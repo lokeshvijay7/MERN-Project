@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Card, Typography } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
+import  useproductstore  from '../store/product.js';
 
 const { Title } = Typography;
 
@@ -32,9 +33,13 @@ const CreatePage = () => {
       [name]: value
     });
   };
+
+  const { createproduct } = useproductstore();
   
   const handleSubmit = () => {
-    console.log('Product submitted:', newProduct);
+     const { success, message } =createproduct(newProduct);
+     console.log("Success:", success);
+     console.log("Message:", message);
   };
   
   const styles = {
